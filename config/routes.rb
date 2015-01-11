@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   
+  devise_for :users
   root 'static_pages#index'
+  
+  get '/users/' => 'users#index'
+  get '/users/:id' => 'users#show'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
