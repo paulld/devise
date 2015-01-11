@@ -1,40 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Predikt</title>
-  <%= stylesheet_link_tag    'application' %>
-  <%= javascript_include_tag 'application' %>
-  <%= csrf_meta_tags %>
-</head>
-<body class="body">
-  <div class="container">
-    <ul class="nav nav-tabs">
-      <li role="presentation" class="<%= is_active?(root_path) %>">
-        <%= link_to "Home", root_path %>
-      </li>
-      <li role="presentation" class="<%= is_active?(users_path) %>">
-        <%= link_to "List of Users", users_path %>
-      </li>
-      <% if current_user %>
-        <li role="presentation" class="nav-right <%= is_active?(destroy_user_session_path) %>">
-          <%= link_to "Sign Out", destroy_user_session_path, :method => 'delete' %>
-        </li>
-      <% else %>
-        <li role="presentation" class="nav-right <%= is_active?(new_user_session_path) %>">
-          <%= link_to "Log In", new_user_session_path %>
-        </li>
-        <li role="presentation" class="nav-right <%= is_active?(new_user_registration_path) %>">
-          <%= link_to "Sign Up", new_user_registration_path %>
-        </li>
-      <% end %>
-    </ul>
+  <head>
+    <title>Predikt</title>
+    <%= stylesheet_link_tag    'application' %>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+  </head>
+  
+  <body class="body">
+    <div class="container">
+      <header>
+        <%= render :partial => 'layouts/header' %>
+      </header>
 
+    <div class="notice"><%= notice %></div>
+    <div class="alert"><%= alert %></div>
 
-  <div class="notice"><%= notice %></div>
-  <div class="alert"><%= alert %></div>
+    <main role="main">
+      <%= yield %>
+    </main>
 
-  <%= yield %>
-
-  </div>
-</body>
+    </div>
+  </body>
 </html>

@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   root 'static_pages#index'
   
   get '/users/' => 'users#index'
-  get '/users/:id' => 'users#show'
+  get 'edit' => 'users#edit'
+  patch 'edit' => 'users#update'
+  get '/users/:id' => 'users#show', as: 'user_show'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -13,7 +15,7 @@ Rails.application.routes.draw do
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+    resources :products
 
   # Example resource route with options:
   #   resources :products do

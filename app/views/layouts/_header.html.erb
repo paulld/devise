@@ -1,0 +1,33 @@
+<ul class="nav nav-tabs">
+
+  <li role="presentation" class="<%= is_active?(root_path) %>">
+    <%= link_to "Home", root_path %>
+  </li>
+  <li role="presentation" class="<%= is_active?(users_path) %>">
+    <%= link_to "List of Users", users_path %>
+  </li>
+  
+  <% if current_user %>
+    <li role="presentation" class="nav-right <%= is_active?(destroy_user_session_path) %>">
+      <%= link_to "Sign Out", destroy_user_session_path, :method => 'delete' %>
+    </li>
+    <li role="presentation" class="nav-right <%= is_active?(edit_user_registration_path) %>">
+      <%= link_to "Update Password", edit_user_registration_path %>
+    </li>
+    <li role="presentation" class="nav-right <%= is_active?(edit_path) %>">
+      <%= link_to "Edit Profile", edit_path %>
+    </li>
+    <li role="presentation" class="nav-right <%= is_active?(user_show_path(current_user)) %>">
+      <%= link_to "My Profile", user_show_path(current_user) %>
+    </li>
+  
+  <% else %>
+    <li role="presentation" class="nav-right <%= is_active?(new_user_registration_path) %>">
+      <%= link_to "Sign Up", new_user_registration_path %>
+    </li>
+    <li role="presentation" class="nav-right <%= is_active?(new_user_session_path) %>">
+      <%= link_to "Log In", new_user_session_path %>
+    </li>
+  <% end %>
+
+</ul>

@@ -1,2 +1,5 @@
-<h1>User <%= @user.id %></h1>
+<h1>User: <%= @user.first_name %> <%= @user.last_name %></h1>
 <div><%= @user.email %></div>
+<div><%= image_tag @user.avatar.url %></div>
+<div><%= image_tag @user.avatar.url(:medium) %></div>
+<div><%= image_tag @user.avatar.url(:thumb) %></div>
