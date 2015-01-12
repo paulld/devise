@@ -1,3 +1,17 @@
 <div class="row">
   <h1><%= @company.name %></h1>
+
+  <table class="table">
+    <thead>
+      
+    </thead>
+    <tbody>
+      <% @names_list_sym.each_with_index do |name, index| %>
+        <tr>
+          <td><%= @names_list[index] %></td>
+          <td><%= @company.annualincomes[0][name] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>

@@ -9,7 +9,11 @@
       <tbody>
         <% @companies.each do |company| %>
           <tr>
-            <td><%= link_to company.symbol, company_path(company.symbol) %></td>
+            <% if company.annualincomes.empty? %>
+              <td><%= company.symbol %></td>
+            <% else %>
+              <td><%= link_to company.symbol, company_path(company.symbol) %></td>
+            <% end %>
             <td><%= company.name %></td>
           </tr>
         <% end %>
