@@ -1,0 +1,19 @@
+<div class="row">
+  <h1>List of Companies</h1>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <th>Symbol</th>
+        <th>Company Name</th>
+      </thead>
+      <tbody>
+        <% @companies.each do |company| %>
+          <tr>
+            <td><%= link_to company.symbol, company_path(company.symbol) %></td>
+            <td><%= company.name %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
