@@ -6,6 +6,9 @@
   <li role="presentation" class="<%= is_active?(users_path) %>">
     <%= link_to "List of Users", users_path %>
   </li>
+  <li role="presentation" class="<%= is_active?(companies_path) %>">
+    <%= link_to "List of Companies", companies_path %>
+  </li>
   
   <% if current_user %>
     <li role="presentation" class="nav-right <%= is_active?(destroy_user_session_path) %>">
