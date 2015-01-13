@@ -4,6 +4,7 @@ class CreateCompanies < ActiveRecord::Migration
 
       t.string :name
       t.string :symbol
+      t.string :stock_exchange
 
       t.timestamps
     end

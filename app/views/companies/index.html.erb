@@ -3,16 +3,18 @@
   <div class="table-responsive">
     <table class="table">
       <thead>
+        <th>Stock Exchange</th>
         <th>Symbol</th>
         <th>Company Name</th>
       </thead>
       <tbody>
         <% @companies.each do |company| %>
           <tr>
+            <td><%= company.stock_exchange %></td>
             <% if company.annualincomes.empty? %>
               <td><%= company.symbol %></td>
             <% else %>
-              <td><%= link_to company.symbol, company_path(company.symbol) %></td>
+              <td><%= link_to company.symbol, company_path(company.stock_exchange, company.symbol) %></td>
             <% end %>
             <td><%= company.name %></td>
           </tr>

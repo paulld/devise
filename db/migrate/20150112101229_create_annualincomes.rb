@@ -1,42 +1,12 @@
 class CreateAnnualincomes < ActiveRecord::Migration
   def change
     create_table :annualincomes do |t|
-
       t.integer :company_id
 
       t.string :currency
       t.date :period
-
-      t.decimal :cost_of_revenue_total
-      t.decimal :selling_general_admin_expenses_total
-      t.decimal :research_development
-      t.decimal :depreciation_amortization
-      t.decimal :interest_expense_income_net_operating
-      t.decimal :unusual_expense_income
-      t.decimal :other_operating_expenses_total
-      t.decimal :interest_income_expense_net_non_operating
-      t.decimal :gain_loss_on_sale_of_assets
-      t.decimal :other_net
-      t.decimal :net_income_before_extra_items
-      t.decimal :extraordinary_item
-      t.decimal :income_available_to_common_excl_extra_items
-      t.decimal :income_available_to_common_incl_extra_items
-      t.decimal :basic_eps_excluding_extraordinary_items
-      t.decimal :basic_eps_including_extraordinary_items
-      t.decimal :diluted_eps_excluding_extraordinary_items
-      t.decimal :diluted_eps_including_extraordinary_items
-      t.decimal :dividends_per_share_common_stock_primary_issue
-      t.decimal :gross_dividends_common_stock
-      t.decimal :net_income_after_stock_based_comp_expense
-      t.decimal :basic_eps_after_stock_based_comp_expense
-      t.decimal :diluted_eps_after_stock_based_comp_expense
-      t.decimal :depreciation_supplemental
-      t.decimal :income_taxes_ex_impact_of_special_items
-      
-
       t.decimal :revenue
       t.decimal :other_revenue
-      t.decimal :other_revenue_total
       t.decimal :total_revenue
       t.decimal :total_cost_of_revenue
       t.decimal :gross_profit

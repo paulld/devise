@@ -1,115 +1,13 @@
 class CompaniesController < ApplicationController
 
+  before_action :get_names
+
   def index
     @companies = Company.all
   end
 
   def show
-    @company = Company.find_by(:symbol => params[:symbol])
-
-    @names_list_sym = [
-      :revenue,
-      :other_revenue_total,
-      :total_revenue,
-      :cost_of_revenue_total,
-      :gross_profit,
-      :selling_general_admin_expenses_total,
-      :research_development,
-      :depreciation_amortization,
-      :interest_expense_income_net_operating,
-      :unusual_expense_income,
-      :other_operating_expenses_total,
-      :total_operating_expense,
-      :operating_income,
-      :interest_income_expense_net_non_operating,
-      :gain_loss_on_sale_of_assets,
-      :other_net,
-      :income_before_tax,
-      :income_after_tax,
-      :minority_interest,
-      :equity_in_affiliates,
-      :net_income_before_extra_items,
-      :accounting_change,
-      :discontinued_operations,
-      :extraordinary_item,
-      :net_income,
-      :preferred_dividends,
-      :income_available_to_common_excl_extra_items,
-      :income_available_to_common_incl_extra_items,
-      :basic_weighted_average_shares,
-      :basic_eps_excluding_extraordinary_items,
-      :basic_eps_including_extraordinary_items,
-      :dilution_adjustment,
-      :diluted_weighted_average_shares,
-      :diluted_eps_excluding_extraordinary_items,
-      :diluted_eps_including_extraordinary_items,
-      :dividends_per_share_common_stock_primary_issue,
-      :gross_dividends_common_stock,
-      :net_income_after_stock_based_comp_expense,
-      :basic_eps_after_stock_based_comp_expense,
-      :diluted_eps_after_stock_based_comp_expense,
-      :depreciation_supplemental,
-      :total_special_items,
-      :normalized_income_before_taxes,
-      :effect_of_special_items_on_income_taxes,
-      :income_taxes_ex_impact_of_special_items,
-      :normalized_income_after_taxes,
-      :normalized_income_avail_to_common,
-      :basic_normalized_eps,
-      :diluted_normalized_eps
-    ]
-
-    @names_list = [
-      "Revenue",
-      "Other Revenue, Total",
-      "Total Revenue",
-      "Cost of Revenue, Total",
-      "Gross Profit",
-      "Selling/General/Admin. Expenses, Total",
-      "Research & Development",
-      "Depreciation/Amortization",
-      "Interest Expense(Income) - Net Operating",
-      "Unusual Expense (Income)",
-      "Other Operating Expenses, Total",
-      "Total Operating Expense",
-      "Operating Income",
-      "Interest Income(Expense), Net Non-Operating",
-      "Gain (Loss) on Sale of Assets",
-      "Other, Net",
-      "Income Before Tax",
-      "Income After Tax",
-      "Minority Interest",
-      "Equity In Affiliates",
-      "Net Income Before Extra. Items",
-      "Accounting Change",
-      "Discontinued Operations",
-      "Extraordinary Item",
-      "Net Income",
-      "Preferred Dividends",
-      "Income Available to Common Excl. Extra Items",
-      "Income Available to Common Incl. Extra Items",
-      "Basic Weighted Average Shares",
-      "Basic EPS Excluding Extraordinary Items",
-      "Basic EPS Including Extraordinary Items",
-      "Dilution Adjustment",
-      "Diluted Weighted Average Shares",
-      "Diluted EPS Excluding Extraordinary Items",
-      "Diluted EPS Including Extraordinary Items",
-      "Dividends per Share - Common Stock Primary Issue",
-      "Gross Dividends - Common Stock",
-      "Net Income after Stock Based Comp. Expense",
-      "Basic EPS after Stock Based Comp. Expense",
-      "Diluted EPS after Stock Based Comp. Expense",
-      "Depreciation, Supplemental",
-      "Total Special Items",
-      "Normalized Income Before Taxes",
-      "Effect of Special Items on Income Taxes",
-      "Income Taxes Ex. Impact of Special Items",
-      "Normalized Income After Taxes",
-      "Normalized Income Avail to Common",
-      "Basic Normalized EPS",
-      "Diluted Normalized EPS"
-    ]
+    @company = Company.find_by(:stock_exchange => params[:stock_exchange], :symbol => params[:symbol])
   end
 
 end

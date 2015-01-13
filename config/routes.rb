@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     # resources :companies
 
     get '/companies' => 'companies#index', as: 'companies'
-    get '/companies/:symbol' => 'companies#show', as: 'company'
+    get '/companies/:stock_exchange/:symbol' => 'companies#show', as: 'company'
 
   # Example resource route with options:
   #   resources :products do
