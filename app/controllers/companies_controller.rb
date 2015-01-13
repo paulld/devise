@@ -1,6 +1,6 @@
 class CompaniesController < ApplicationController
 
-  before_action :get_names
+  # before_action :get_names
 
   def index
     @companies = Company.all
