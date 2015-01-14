@@ -9,6 +9,12 @@
   <li role="presentation" class="<%= is_active?(companies_path) %>">
     <%= link_to "List of Companies", companies_path %>
   </li>
+  <li role="presentation" class="<%= is_active?(airlines_path) %>">
+    <%= link_to "List of Airlines", airlines_path %>
+  </li>
+  <!-- <li role="presentation" class="<%= is_active?(airplanes_path) %>">
+    <%= link_to "List of Airplanes", airplanes_path %>
+  </li> -->
   
   <% if current_user %>
     <li role="presentation" class="nav-right <%= is_active?(destroy_user_session_path) %>">

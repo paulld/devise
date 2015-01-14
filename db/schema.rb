@@ -11,7 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150112101229) do
+ActiveRecord::Schema.define(version: 20150113123651) do
+
+  create_table "airlines", force: true do |t|
+    t.string   "name"
+    t.string   "iata"
+    t.string   "icao"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "airplanes", force: true do |t|
+    t.integer  "airline_id"
+    t.string   "registration_code"
+    t.string   "mode_s"
+    t.string   "plane_type_code"
+    t.string   "plane_type"
+    t.string   "s_n"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "annualincomes", force: true do |t|
     t.integer  "company_id"

@@ -1,0 +1,28 @@
+<div class="row">
+  <h1><%= @airplane.registration_code %></h1>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Registration Code</th>
+          <th>Type</th>
+          <th>Type Code</th>
+          <th>ModeS</th>
+          <th>S/N</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @airplane.registration_code %></td>
+          <td><%= @airplane.plane_type %></td>
+          <td><%= @airplane.plane_type_code %></td>
+          <td><%= @airplane.mode_s %></td>
+          <td><%= @airplane.s_n %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div><%= link_to "Back to #{@airline.name}", airline_path(@airline.icao) %></div>
+  <div><%= link_to "Back to the list of Airlines", airlines_path %></div>
+</div>

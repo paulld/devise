@@ -1,4 +1,4 @@
-namespace :scrape do 
+namespace :scrape_companies do 
   
   desc "Scraping the row names and convert into symbol (to generate our Annualincome model"
   task :get_row_names => :environment do
@@ -31,9 +31,9 @@ namespace :scrape do
     require 'nokogiri'
     
     Company.all.each_with_index do |company, index|
-      # if index < 300
+      if index > 901  # missing 393 BLIN
         record_financials(company)
-      # end
+      end
     end
   end
 
@@ -87,8 +87,8 @@ namespace :scrape do
 
 
 
-  desc "Scrape companies from CSV"
-  task :make_companies => :environment do
+  desc "Scrape NASDAQ companies from CSV"
+  task :make_nasdaq_companies => :environment do
     require 'open-uri'
     require 'csv'
 
@@ -98,9 +98,17 @@ namespace :scrape do
 
     CSV.foreach(url_data) do |symbol, name|
       # puts "#{name}: #{symbol}" unless name == "Name"
-      Company.create(:name => name, :symbol => symbol, :stock_exchange => "NASDAQ") unless symbol == "Symbol"
+      Company.create(:name => name, :symbol => symbol.squish, :stock_exchange => "NASDAQ") unless symbol == "Symbol"
     end
     puts "done scrapping"
   end
 
+
+  desc "Clean up database for companies (remove whitespaces from symbols)"
+  task :clean_companies => :environment do
+    
+    Company.all.each do |company|
+      company.update_attributes(:symbol => company.symbol.squish)
+    end
+  end
 end

@@ -1,24 +1,28 @@
 <div class="row">
   <h1><%= @company.name %></h1>
 
-  <table class="table">
-    <thead>
-      <tr>
-          <th>in '000,000</th>
-          <% @company.annualincomes.each do |annualincome| %>
-            <th><%= annualincome['period'] %></th>
-          <% end %>    
-        </tr>
-    </thead>
-    <tbody>
-      <% Annualincome.columns[4..52].each_with_index do |column, index| %>
+  <% if @company.annualincomes.empty? %>
+    <p>No accounts are listed for this company yet.</p>
+  <% else %>
+    <table class="table">
+      <thead>
         <tr>
-          <td><%= column.name.humanize.split.map(&:capitalize).join(' ') %></td>
-          <% @company.annualincomes.each do |annualincome| %>
-            <td><%= annualincome[column.name] %></td>
-          <% end %>    
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+            <th><%= @company.annualincomes[0]['currency'] %></th>
+            <% @company.annualincomes.each do |annualincome| %>
+              <th><%= annualincome['period'] %></th>
+            <% end %>    
+          </tr>
+      </thead>
+      <tbody>
+        <% Annualincome.columns[4..52].each_with_index do |column, index| %>
+          <tr>
+            <td><%= column.name.humanize.split.map(&:capitalize).join(' ') %></td>
+            <% @company.annualincomes.each do |annualincome| %>
+              <td><%= annualincome[column.name] %></td>
+            <% end %>    
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
 </div>
