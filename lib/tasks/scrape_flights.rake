@@ -33,7 +33,7 @@ namespace :scrape_flights do
     require 'nokogiri'
 
     Airline.all.each_with_index do |airline, index|
-      # if airline.id == 931
+      if index < 200    # ONLY SCRAPE THE FIRST 200!!
         document = open(airline.url).read
         html_doc = Nokogiri::HTML(document)
 
@@ -43,7 +43,7 @@ namespace :scrape_flights do
           airline.airplanes.create(:registration_code => code.text.squish)
         end
         puts "Done #{index+1} (#{airline.name})"
-      # end
+      end
     end
   end
 
@@ -76,8 +76,3 @@ namespace :scrape_flights do
   end
 
 end
-
-
-
-
-# 

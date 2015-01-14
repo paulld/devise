@@ -1,4 +1,30 @@
 namespace :scrape_companies do 
+
+  desc "Scrape NASDAQ companies from CSV"
+  task :make_nasdaq_companies => :environment do
+    require 'open-uri'
+    require 'csv'
+
+    url = "http://s3.amazonaws.com/nvest/nasdaq_09_11_2014.csv"
+
+    url_data = open(url)
+
+    CSV.foreach(url_data) do |symbol, name|
+      # puts "#{name}: #{symbol}" unless name == "Name"
+      Company.create(:name => name, :symbol => symbol.squish, :stock_exchange => "NASDAQ") unless symbol == "Symbol"
+    end
+    puts "done scrapping"
+  end
+
+
+  # desc "Clean up database for companies (remove whitespaces from symbols)"
+  # task :clean_companies => :environment do
+    
+  #   Company.all.each do |company|
+  #     company.update_attributes(:symbol => company.symbol.squish)
+  #   end
+  # end
+
   
   desc "Scraping the row names and convert into symbol (to generate our Annualincome model"
   task :get_row_names => :environment do
@@ -31,7 +57,7 @@ namespace :scrape_companies do
     require 'nokogiri'
     
     Company.all.each_with_index do |company, index|
-      if index > 901  # missing 393 BLIN
+      if index < 500    # ONLY SCRAPE THE FIRST 500!!
         record_financials(company)
       end
     end
@@ -85,30 +111,4 @@ namespace :scrape_companies do
     puts "Done"
   end
 
-
-
-  desc "Scrape NASDAQ companies from CSV"
-  task :make_nasdaq_companies => :environment do
-    require 'open-uri'
-    require 'csv'
-
-    url = "http://s3.amazonaws.com/nvest/nasdaq_09_11_2014.csv"
-
-    url_data = open(url)
-
-    CSV.foreach(url_data) do |symbol, name|
-      # puts "#{name}: #{symbol}" unless name == "Name"
-      Company.create(:name => name, :symbol => symbol.squish, :stock_exchange => "NASDAQ") unless symbol == "Symbol"
-    end
-    puts "done scrapping"
-  end
-
-
-  desc "Clean up database for companies (remove whitespaces from symbols)"
-  task :clean_companies => :environment do
-    
-    Company.all.each do |company|
-      company.update_attributes(:symbol => company.symbol.squish)
-    end
-  end
 end
