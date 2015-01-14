@@ -58,7 +58,11 @@ namespace :scrape_companies do
     
     Company.all.each_with_index do |company, index|
       if index < 500    # ONLY SCRAPE THE FIRST 500!!
-        record_financials(company)
+        if company.annualincomes.empty?
+          record_financials(company)
+        else
+          puts "#{company.name} already has financials."
+        end
       end
     end
   end

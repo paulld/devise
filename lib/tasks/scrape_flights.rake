@@ -15,13 +15,19 @@ namespace :scrape_flights do
     data_format_name  = "ul#airlineList > li > a > div > span.operator"
 
     html_doc.css(data_format_codes).each_with_index do |foo, index|
-      new_airline = Airline.new
-      new_airline["name"] = html_doc.css(data_format_name)[index].text
-      new_airline["iata"] = html_doc.css(data_format_codes)[index]['data-iata'].squish
-      new_airline["icao"] = html_doc.css(data_format_codes)[index]['data-icao'].squish
-      new_airline["url"] = "http://www.flightradar24.com" + html_doc.css(data_format_link)[index]['href']
-      new_airline.save
-      puts "Done #{index+1} (#{new_airline["name"]})"
+      iata_code = html_doc.css(data_format_codes)[index]['data-iata'].squish
+
+      if Airline.find_by(:iata => iata_code)
+        puts "#{iata_code} was already done."
+      else
+        new_airline = Airline.new
+        new_airline["name"] = html_doc.css(data_format_name)[index].text
+        new_airline["iata"] = iata_code
+        new_airline["icao"] = html_doc.css(data_format_codes)[index]['data-icao'].squish
+        new_airline["url"] = "http://www.flightradar24.com" + html_doc.css(data_format_link)[index]['href']
+        new_airline.save
+        puts "Done #{index+1} (#{new_airline["name"]})"
+      end
     end
   end
 
