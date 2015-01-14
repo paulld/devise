@@ -1,0 +1,51 @@
+<div class="row">
+  <h1><%= @airline.name %></h1>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>IATA Code</th>
+          <th>ICAO Code</th>
+          <th>Number of Active Airplaines</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @airline.iata %></td>
+          <td><%= @airline.icao %></td>
+          <td><%= @airline.airplanes.count %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+    
+  <h2>List of Airplanes</h2>
+  <% if @airline.airplanes.empty? %>
+    <p>No Airplaines listed yet</p>
+  <% else %>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Registration Code</th>
+            <th>Type</th>
+            <th>Type Code</th>
+            <th>ModeS</th>
+            <th>S/N</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @airline.airplanes.each do |airplane| %>
+            <tr>
+              <td><%= link_to airplane.registration_code, airplane_path(@airline.iata, airplane.registration_code) %></td>
+              <td><%= airplane.plane_type %></td>
+              <td><%= airplane.plane_type_code %></td>
+              <td><%= airplane.mode_s %></td>
+              <td><%= airplane.s_n %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+</div>

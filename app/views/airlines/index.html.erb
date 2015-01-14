@@ -1,0 +1,29 @@
+<div class="row">
+  <h1>List of Airlines</h1>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>IATA</th>
+          <th>ICAO</th>
+          <th>Airline Name</th>
+          <th>Number of Listed Airplanes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @airlines.each do |airline| %>
+          <tr>
+            <% if airline.airplanes.empty? %>
+              <td><%= airline.iata %></td>
+            <% else %>
+              <td><%= link_to airline.iata, airline_path(airline.iata) %></td>
+            <% end %>
+            <td><%= airline.icao %></td>
+            <td><%= airline.name %></td>
+            <td><%= airline.airplanes.count %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

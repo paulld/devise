@@ -1,9 +1,7 @@
 class CompaniesController < ApplicationController
 
-  # before_action :get_names
-
   def index
-    @companies = Company.all
+    @companies = params[:stock_exchange] ? Company.where(:stock_exchange => params[:stock_exchange]) : Company.all
   end
 
   def show
