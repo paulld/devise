@@ -40,15 +40,23 @@ namespace :scrape_flights do
 
     Airline.all.each_with_index do |airline, index|
       if index < 200    # ONLY SCRAPE THE FIRST 200!!
-        document = open(airline.url).read
-        html_doc = Nokogiri::HTML(document)
+        if Airline.airplanes?
+          puts "#{airline.name} already has listed airplanes"
+        else
+          document = open(airline.url).read
+          html_doc = Nokogiri::HTML(document)
 
-        data_format_code = "ul#listAircrafts > li > a > p" # Airplane registration codes
+          data_format_code = "ul#listAircrafts > li > a > p" # Airplane registration codes
 
-        html_doc.css(data_format_code).each do |code|
-          airline.airplanes.create(:registration_code => code.text.squish)
+          html_doc.css(data_format_code).each do |code|
+            # if Airplane.find_by(:registration_code => code.text.squish)   # second level of security
+              # already done
+            # else
+              airline.airplanes.create(:registration_code => code.text.squish)
+            # end
+          end
+          puts "Done #{index+1} (#{airline.name})"
         end
-        puts "Done #{index+1} (#{airline.name})"
       end
     end
   end

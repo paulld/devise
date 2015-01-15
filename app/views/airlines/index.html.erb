@@ -4,8 +4,8 @@
     <table class="table">
       <thead>
         <tr>
-          <th>IATA</th>
           <th>ICAO</th>
+          <th>IATA</th>
           <th>Airline Name</th>
           <th>Number of Listed Airplanes</th>
         </tr>
@@ -14,11 +14,11 @@
         <% @airlines.each do |airline| %>
           <tr>
             <% if airline.airplanes.empty? %>
-              <td><%= airline.iata %></td>
+              <td><%= airline.icao %></td>
             <% else %>
-              <td><%= link_to airline.iata, airline_path(airline.iata) %></td>
+              <td><%= link_to airline.icao, airline_path(airline.icao) %></td>
             <% end %>
-            <td><%= airline.icao %></td>
+            <td><%= airline.iata %></td>
             <td><%= airline.name %></td>
             <td><%= airline.airplanes.count %></td>
           </tr>

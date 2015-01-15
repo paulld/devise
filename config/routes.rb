@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   get   '/companies/:stock_exchange/:symbol'        => 'companies#show',  as: 'company'
 
   get   '/airlines'                                 => 'airlines#index',  as: 'airlines'
-  get   '/airlines/:iata'                           => 'airlines#show',   as: 'airline'
+  get   '/airlines/:icao'                           => 'airlines#show',   as: 'airline'
 
   get   '/airplanes'                                => 'airplanes#index', as: 'airplanes'
   get   '/airplanes/:airline_iata/:registration_code' => 'airplanes#show',  as: 'airplane'

@@ -1,6 +1,15 @@
+$main-color: rgb(100,100,100);
+
 .body {
   padding-top: 20px;
 }
 .nav.nav-tabs > .nav-right {
   float: right;
+}
+.title {
+  font-weight: 100;
+  color: $main-color;
+}
+.name {
+  color: $main-color;
 }

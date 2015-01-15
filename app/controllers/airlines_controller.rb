@@ -5,7 +5,7 @@ class AirlinesController < ApplicationController
   end
 
   def show
-    @airline = Airline.find_by(:iata => params[:iata])
+    @airline = Airline.find_by(:icao => params[:icao])
   end
 
 end
