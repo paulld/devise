@@ -2,8 +2,6 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.1.8'
 
-gem 'pg', group: :production
-
 # Bootstrap
 gem 'bootstrap-sass', '~> 3.3.0'
 # Use SCSS for stylesheets
@@ -26,12 +24,15 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
-# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-
 # Good for showing error messages when form has not passed validations
 gem 'simple_form'
 
 gem 'devise'
+
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
+end
 
 
 group :development, :test do

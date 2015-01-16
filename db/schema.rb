@@ -118,6 +118,7 @@ ActiveRecord::Schema.define(version: 20150113123651) do
     t.datetime "locked_at"
     t.string   "first_name"
     t.string   "last_name"
+    t.string   "username"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "avatar_file_name"

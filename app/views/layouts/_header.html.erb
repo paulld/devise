@@ -6,12 +6,12 @@
   <li role="presentation" class="<%= is_active?(users_path) %>">
     <%= link_to "List of Users", users_path %>
   </li>
-  <li role="presentation" class="<%= is_active?(companies_path) %>">
+  <!-- <li role="presentation" class="<%= is_active?(companies_path) %>">
     <%= link_to "List of Companies", companies_path %>
   </li>
   <li role="presentation" class="<%= is_active?(airlines_path) %>">
     <%= link_to "List of Airlines", airlines_path %>
-  </li>
+  </li> -->
   <!-- <li role="presentation" class="<%= is_active?(airplanes_path) %>">
     <%= link_to "List of Airplanes", airplanes_path %>
   </li> -->
@@ -20,9 +20,9 @@
     <li role="presentation" class="nav-right <%= is_active?(destroy_user_session_path) %>">
       <%= link_to "Sign Out", destroy_user_session_path, :method => 'delete' %>
     </li>
-    <li role="presentation" class="nav-right <%= is_active?(edit_user_registration_path) %>">
+    <!-- <li role="presentation" class="nav-right <%= is_active?(edit_user_registration_path) %>">
       <%= link_to "Update Password", edit_user_registration_path %>
-    </li>
+    </li> -->
     <li role="presentation" class="nav-right <%= is_active?(edit_path) %>">
       <%= link_to "Edit Profile", edit_path %>
     </li>

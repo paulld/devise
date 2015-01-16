@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :avatar, 
                                     :content_type => /\Aimage\/.*\Z/
 
+  validates :username, uniqueness: true
+
   def s3_credentials
     {:bucket => ENV['S3_BUCKET'], :access_key_id => ENV['ACCESS_KEY_ID'], :secret_access_key => ENV['SECRET_ACCESS_KEY']}
   end
