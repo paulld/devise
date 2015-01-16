@@ -13,3 +13,26 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+
+function notyMessage(type,msg) {
+  switch (type) {
+    case 'alert':
+      var notyType = 'error';
+      var notyTimeout = 6000;
+      break;
+    case 'notice':
+      var notyType = 'success';
+      var notyTimeout = 5000;
+      break;
+    default:
+      var notyType = type;
+      var notyTimeout = 4000;
+  };
+  var n = noty({
+    layout: 'topCenter',
+    timeout: notyTimeout,
+    text: msg,
+    type: notyType,
+  });
+};

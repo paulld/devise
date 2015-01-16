@@ -1,5 +1,7 @@
 class AirlinesController < ApplicationController
 
+  before_action :authenticate_user!
+
   def index
     @airlines = Airline.all
   end

@@ -25,5 +25,5 @@ production:
   encoding: unicode
   database: flightscanner_production
   pool: 5
-  username: rails
-  password: ENV["psql_password"]
+  username: ENV["PSQL_USERNAME"]
+  password: ENV["PSQL_PASSWORD"]

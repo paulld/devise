@@ -2,9 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.1.8'
 
-# gem 'pg'
 gem 'pg', group: :production
-gem 'sqlite3', group: :development
 
 # Bootstrap
 gem 'bootstrap-sass', '~> 3.3.0'
@@ -29,24 +27,28 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-gem 'spring',        group: :development
 
 # Good for showing error messages when form has not passed validations
 gem 'simple_form'
 
 gem 'devise'
 
-gem 'meta_request', group: :development
 
-gem 'better_errors', group: :development
-gem 'binding_of_caller', group: :development
+group :development, :test do
+  gem 'sqlite3'
+  gem 'spring'
+  gem 'meta_request'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'dotenv-rails'
+end
+
 
 # User profile picture
 gem "paperclip", "~> 4.2"
 # Storing profile pictures in AWS S3
 gem 'aws-sdk', '~> 1.5.7'
 # Managing Sensitive ENV variables
-gem 'dotenv-rails', :groups => [:development, :test]
 
 
 gem 'will_paginate', '~> 3.0.6'
